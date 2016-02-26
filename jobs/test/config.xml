@@ -4,7 +4,25 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.accurev.AccurevSCM" plugin="accurev@0.6.35">
+    <serverName>Test</serverName>
+    <stream>test1</stream>
+    <ignoreStreamParent>false</ignoreStreamParent>
+    <wspaceORreftree>none</wspaceORreftree>
+    <useReftree>false</useReftree>
+    <useWorkspace>false</useWorkspace>
+    <noWspaceNoReftree>true</noWspaceNoReftree>
+    <cleanreftree>false</cleanreftree>
+    <workspace></workspace>
+    <useSnapshot>false</useSnapshot>
+    <dontPopContent>false</dontPopContent>
+    <snapshotNameFormat></snapshotNameFormat>
+    <synctime>false</synctime>
+    <reftree></reftree>
+    <subPath></subPath>
+    <filterForPollSCM></filterForPollSCM>
+    <directoryOffset></directoryOffset>
+  </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
