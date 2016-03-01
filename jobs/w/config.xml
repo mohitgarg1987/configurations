@@ -5,7 +5,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.joelj.jenkins.eztemplates.TemplateImplementationProperty plugin="ez-templates@1.1.2">
-      <templateJobName>a</templateJobName>
+      <templateJobName>DSL-Tutorial-1-Test</templateJobName>
       <syncMatrixAxis>false</syncMatrixAxis>
       <syncDescription>false</syncDescription>
       <syncBuildTriggers>false</syncBuildTriggers>
@@ -23,7 +23,22 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
-  <publishers/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo &quot;a&quot;</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <org.jenkinsci.plugins.rundeck.RundeckNotifier plugin="rundeck@3.5.1">
+      <jobId>421ddde2-cc45-44b4-b3d8-a26caaa0949b</jobId>
+      <options>bn=$BUILD_NUMBER</options>
+      <nodeFilters></nodeFilters>
+      <tag></tag>
+      <shouldWaitForRundeckJob>true</shouldWaitForRundeckJob>
+      <shouldFailTheBuild>true</shouldFailTheBuild>
+      <includeRundeckLogs>true</includeRundeckLogs>
+      <tailLog>true</tailLog>
+    </org.jenkinsci.plugins.rundeck.RundeckNotifier>
+  </publishers>
   <buildWrappers/>
 </project>
