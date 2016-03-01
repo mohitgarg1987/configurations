@@ -4,19 +4,40 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <com.joelj.jenkins.eztemplates.TemplateImplementationProperty plugin="ez-templates@1.1.2">
-      <templateJobName>DSL-Tutorial-1-Test</templateJobName>
-      <syncMatrixAxis>false</syncMatrixAxis>
-      <syncDescription>false</syncDescription>
-      <syncBuildTriggers>false</syncBuildTriggers>
-      <syncDisabled>false</syncDisabled>
-      <syncSecurity>false</syncSecurity>
-      <syncScm>true</syncScm>
-      <syncOwnership>false</syncOwnership>
-      <syncAssignedLabel>true</syncAssignedLabel>
-    </com.joelj.jenkins.eztemplates.TemplateImplementationProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>branch</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>master</string>
+              <string>maven_prac</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.2">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/mohitgarg1987/configurations.git</url>
+        <credentialsId>3e21ecdb-40f9-4887-8d01-1caeb13f5513</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/$branch</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.PerBuildTag/>
+    </extensions>
+  </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -24,21 +45,14 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Shell>
-      <command>echo &quot;a&quot;</command>
-    </hudson.tasks.Shell>
+    <hudson.tasks.Maven>
+      <targets>-e clean test</targets>
+      <mavenName>(Default)</mavenName>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
   </builders>
-  <publishers>
-    <org.jenkinsci.plugins.rundeck.RundeckNotifier plugin="rundeck@3.5.1">
-      <jobId>421ddde2-cc45-44b4-b3d8-a26caaa0949b</jobId>
-      <options>bn=$BUILD_NUMBER</options>
-      <nodeFilters></nodeFilters>
-      <tag></tag>
-      <shouldWaitForRundeckJob>true</shouldWaitForRundeckJob>
-      <shouldFailTheBuild>true</shouldFailTheBuild>
-      <includeRundeckLogs>true</includeRundeckLogs>
-      <tailLog>true</tailLog>
-    </org.jenkinsci.plugins.rundeck.RundeckNotifier>
-  </publishers>
+  <publishers/>
   <buildWrappers/>
 </project>
