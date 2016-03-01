@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><maven2-moduleset plugin="maven-plugin@2.7.1">
+  <actions/>
+  <description>Create a single artifact</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>15</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.plugins.maveninfo.config.MavenInfoJobConfig plugin="maven-info@0.2.0">
+      <mainModulePattern/>
+      <dependenciesPattern/>
+      <assignName>false</assignName>
+      <nameTemplate/>
+      <assignDescription>false</assignDescription>
+      <descriptionTemplate/>
+    </jenkins.plugins.maveninfo.config.MavenInfoJobConfig>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Cancel:vvash2</permission>
+      <permission>hudson.model.Item.Cancel:kgagne</permission>
+      <permission>hudson.model.Item.Cancel:lverma2</permission>
+      <permission>hudson.model.Item.Cancel:hbella</permission>
+      <permission>hudson.model.Item.Cancel:kgagn1</permission>
+      <permission>hudson.model.Item.Cancel:vvashi</permission>
+      <permission>hudson.model.Item.Read:vvash2</permission>
+      <permission>hudson.model.Item.Read:kgagne</permission>
+      <permission>hudson.model.Item.Read:lverma2</permission>
+      <permission>hudson.model.Item.Read:hbella</permission>
+      <permission>hudson.model.Item.Read:kgagn1</permission>
+      <permission>hudson.model.Item.Read:vvashi</permission>
+      <permission>hudson.model.Item.Workspace:vvash2</permission>
+      <permission>hudson.model.Item.Workspace:kgagne</permission>
+      <permission>hudson.model.Item.Workspace:lverma2</permission>
+      <permission>hudson.model.Item.Workspace:hbella</permission>
+      <permission>hudson.model.Item.Workspace:kgagn1</permission>
+      <permission>hudson.model.Item.Workspace:vvashi</permission>
+      <permission>hudson.model.Item.Build:vvash2</permission>
+      <permission>hudson.model.Item.Build:kgagne</permission>
+      <permission>hudson.model.Item.Build:lverma2</permission>
+      <permission>hudson.model.Item.Build:hbella</permission>
+      <permission>hudson.model.Item.Build:kgagn1</permission>
+      <permission>hudson.model.Item.Build:vvashi</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.16.1">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@1.8.4">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.1">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://tools.sapient.com/stash-code-commons/scm/hmb/backstage.git</url>
+        <credentialsId>a0f924bd-3cd2-470d-acb6-f401dcbabc75</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>true</shallow>
+        <noTags>false</noTags>
+        <reference/>
+        <timeout>20</timeout>
+      </hudson.plugins.git.extensions.impl.CloneOption>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <rootModule>
+    <groupId>hmb-repo</groupId>
+    <artifactId>hmb-repo</artifactId>
+  </rootModule>
+  <rootPOM>hmb-repo/pom.xml</rootPOM>
+  <goals>clean install deploy</goals>
+  <aggregatorStyleBuild>true</aggregatorStyleBuild>
+  <incrementalBuild>false</incrementalBuild>
+  <ignoreUpstremChanges>true</ignoreUpstremChanges>
+  <archivingDisabled>false</archivingDisabled>
+  <siteArchivingDisabled>false</siteArchivingDisabled>
+  <fingerprintingDisabled>false</fingerprintingDisabled>
+  <resolveDependencies>false</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>-1</mavenValidationLevel>
+  <runHeadless>false</runHeadless>
+  <disableTriggerDownstreamProjects>true</disableTriggerDownstreamProjects>
+  <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+  <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+  <reporters/>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.40.5">
+      <recipientList>$DEFAULT_RECIPIENTS</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <recipientList/>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern/>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <recipientList/>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern/>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern/>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers/>
+  <prebuilders>
+    <hudson.tasks.Shell>
+      <command>echo ${BUILD_NUMBER} &gt; /tmp/hmb_build.bnum</command>
+    </hudson.tasks.Shell>
+  </prebuilders>
+  <postbuilders>
+    <hudson.tasks.Shell>
+      <command>/app/build-area/deploy-scripts/copy-package.sh /app/ci/jenkins_home/jobs/HMB_Build/workspace/hmb-repo/hmb-all/target /app/build-area/releases/HMB_Build</command>
+    </hudson.tasks.Shell>
+  </postbuilders>
+  <runPostStepsIfResult>
+    <name>FAILURE</name>
+    <ordinal>2</ordinal>
+    <color>RED</color>
+    <completeBuild>true</completeBuild>
+  </runPostStepsIfResult>
+</maven2-moduleset>
