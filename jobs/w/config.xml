@@ -3,7 +3,19 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.joelj.jenkins.eztemplates.TemplateImplementationProperty plugin="ez-templates@1.1.2">
+      <templateJobName>a</templateJobName>
+      <syncMatrixAxis>false</syncMatrixAxis>
+      <syncDescription>false</syncDescription>
+      <syncBuildTriggers>false</syncBuildTriggers>
+      <syncDisabled>false</syncDisabled>
+      <syncSecurity>false</syncSecurity>
+      <syncScm>true</syncScm>
+      <syncOwnership>false</syncOwnership>
+      <syncAssignedLabel>true</syncAssignedLabel>
+    </com.joelj.jenkins.eztemplates.TemplateImplementationProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
